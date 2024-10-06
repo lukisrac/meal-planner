@@ -1,5 +1,8 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
+    env: {
+        es2020: true,
+    },
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
