@@ -1,11 +1,8 @@
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { Providers } from "@/providers/providers";
-import "@/styles/index.css";
-import { css } from "../../styled-system/css";
-
-//import "@/styles/globals.css";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
     title: "Jídelníček",
@@ -19,13 +16,15 @@ const urbanist = Urbanist({
     weight: ["400", "500", "600", "700"],
 });
 
-export default function RootLayout({
-    children,
-}: Readonly<{ children: ReactNode }>) {
+export default function RootLayout(props: { children: ReactNode }) {
     return (
         <html className={urbanist.className} lang="cs">
-            <body className={css({ width: "screen", height: "screen" })}>
-                <Providers>{children}</Providers>
+            <body className="h-screen w-screen">
+                <Providers>
+                    <main className="h-full">
+                        <Suspense>{props.children}</Suspense>
+                    </main>
+                </Providers>
             </body>
         </html>
     );

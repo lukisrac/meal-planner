@@ -4,7 +4,6 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "prepare": "panda codegen",
         "build": "next build",
         "dev": "next dev",
         "format": "prettier src/ --write",
@@ -24,12 +23,12 @@
         "next": "14.2.4",
         "next-auth": "4.24.7",
         "react": "18.3.1",
+        "react-aria-components": "^1.4.0",
         "react-dom": "18.3.1",
         "react-hook-form": "7.53.0",
         "zod": "3.23.3"
     },
     "devDependencies": {
-        "@pandacss/dev": "^0.46.1",
         "@trivago/prettier-plugin-sort-imports": "4.3.0",
         "@types/eslint": "8.56.10",
         "@types/node": "20.14.10",
@@ -37,14 +36,18 @@
         "@types/react-dom": "18.3.0",
         "@typescript-eslint/eslint-plugin": "8.8.0",
         "@typescript-eslint/parser": "8.8.0",
+        "autoprefixer": "^10.4.20",
         "eslint": "8.57.0",
         "eslint-config-next": "14.2.14",
         "eslint-config-prettier": "9.1.0",
         "eslint-plugin-check-file": "2.8.0",
         "eslint-plugin-n": "17.10.3",
         "eslint-plugin-react": "7.37.1",
+        "postcss": "^8.4.47",
         "prettier": "3.3.3",
+        "prettier-plugin-tailwindcss": "^0.6.8",
         "prisma": "5.20.0",
+        "tailwindcss": "^3.4.13",
         "typescript": "5.6.2"
     },
     "ct3aMetadata": {
