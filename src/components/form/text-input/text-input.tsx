@@ -6,9 +6,9 @@ import {
     TextField,
 } from "react-aria-components";
 import { Control, FieldValues, Path, useController } from "react-hook-form";
-import { TextFieldProps } from "@/components/ui/text-input/text-input";
+import { TextInputProps } from "@/components/ui/text-input/text-input";
 
-interface Props<FormData extends FieldValues> extends TextFieldProps {
+interface Props<FormData extends FieldValues> extends TextInputProps {
     control: Control<FormData>;
     name: Path<FormData>;
 }
@@ -20,6 +20,7 @@ export function TextInput<FormData extends FieldValues>(
         control,
         description,
         hiddenLabel,
+        isRequired,
         label,
         name,
         ...textFieldProps
@@ -33,7 +34,7 @@ export function TextInput<FormData extends FieldValues>(
     return (
         <TextField
             isInvalid={fieldState.invalid}
-            isRequired={props.isRequired}
+            isRequired={isRequired}
             name={field.name}
             onBlur={field.onBlur}
             onChange={field.onChange}

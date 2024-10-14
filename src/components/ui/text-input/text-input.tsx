@@ -3,19 +3,16 @@ import {
     Label,
     Text,
     TextField,
-    TextFieldProps as ReactAriaTextFieldProps,
+    TextFieldProps,
 } from "react-aria-components";
-import { FieldError } from "react-hook-form";
 
-export interface TextFieldProps extends ReactAriaTextFieldProps {
+export interface TextInputProps extends TextFieldProps {
     description?: string;
-    error?: FieldError;
     hiddenLabel?: boolean;
-    isFormField?: boolean;
     label: string;
 }
 
-export function TextInput(props: TextFieldProps) {
+export function TextInput(props: TextInputProps) {
     const { description, hiddenLabel, label, ...textFieldProps } = props;
 
     return (

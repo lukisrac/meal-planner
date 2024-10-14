@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Form } from "react-aria-components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { NumberInput } from "@/components/form/number-input/number-input";
 import { TextInput } from "@/components/form/text-input/text-input";
 
 const FORM_SCHEMA = z.object({
@@ -51,6 +52,19 @@ export function CreateRecipeForm() {
                 label="Popisek"
                 name="description"
                 type="text"
+            />
+            <NumberInput
+                control={formApi.control}
+                label="Počet porcí"
+                minValue={1}
+                name="servings"
+            />
+            <NumberInput
+                control={formApi.control}
+                description="Čas v minutách"
+                label="Doba přípravy"
+                minValue={1}
+                name="preparationTime"
             />
             <Button type="submit">Odeslat</Button>
         </Form>
