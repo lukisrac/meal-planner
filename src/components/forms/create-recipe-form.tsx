@@ -1,16 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-    Button,
-    FieldError,
-    Form,
-    Input,
-    Label,
-    TextField,
-} from "react-aria-components";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Button, Form } from "react-aria-components";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { TextInput } from "@/components/form/text-input/text-input";
 
 const FORM_SCHEMA = z.object({
     description: z.string().min(1, "Popisek je povinný"),
@@ -45,68 +39,20 @@ export function CreateRecipeForm() {
 
     return (
         <Form onSubmit={formApi.handleSubmit(handleSubmitForm)}>
-            <Controller
-                control={formApi.control}
-                name="title"
-                render={({ field, fieldState }) => (
-                    <TextField
-                        isInvalid={fieldState.invalid}
-                        isRequired
-                        name={field.name}
-                        onBlur={field.onBlur}
-                        onChange={field.onChange}
-                        validationBehavior="aria"
-                        value={field.value}
-                    >
-                        <Label>Název</Label>
-                        <Input ref={field.ref} />
-                        <FieldError>{fieldState.error?.message}</FieldError>
-                    </TextField>
-                )}
-            />
-            <Controller
-                control={formApi.control}
-                name="description"
-                render={({ field, fieldState }) => (
-                    <TextField
-                        isInvalid={fieldState.invalid}
-                        isRequired
-                        name={field.name}
-                        onBlur={field.onBlur}
-                        onChange={field.onChange}
-                        validationBehavior="aria"
-                        value={field.value}
-                    >
-                        <Label>Popisek</Label>
-                        <Input ref={field.ref} />
-                        <FieldError>{fieldState.error?.message}</FieldError>
-                    </TextField>
-                )}
-            />
-            {/*<TextInput
+            <TextInput
                 control={formApi.control}
                 isRequired
                 label="Název"
                 name="title"
+                type="text"
             />
             <TextInput
                 control={formApi.control}
                 label="Popisek"
                 name="description"
-            />*/}
+                type="text"
+            />
             <Button type="submit">Odeslat</Button>
         </Form>
     );
-
-    /*return (
-        <form onSubmit={formApi.handleSubmit(handleSubmit)}>
-            <label htmlFor="">Title:</label>
-            <input {...formApi.register("title")} />
-            <input {...formApi.register("description")} />
-            <input type="number" {...formApi.register("preparationTime")} />
-            <input type="number" {...formApi.register("servings")} />
-            {formApi.formState.errors && <span>This field is required</span>}
-            <input type="submit" />
-        </form>
-    );*/
 }
