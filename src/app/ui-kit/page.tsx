@@ -38,7 +38,7 @@ export default function UiKitPage() {
                 <div>
                     <p>Colors:</p>
                     <div className="mt-2 flex flex-col gap-y-4">
-                        <Alert color="success">Alert - variant success</Alert>
+                        <Alert color="success">Alertt - variant success</Alert>
                         <Alert color="info">Alert - variant info</Alert>
                         <Alert color="warning">Alert - variant warning</Alert>
                         <Alert color="error">Alert - variant error</Alert>
