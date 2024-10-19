@@ -41,16 +41,61 @@ const GRAYSCALE_COLORS = {
     50: "#FAFAFA",
 };
 
+const BACKGROUND_COLORS = {
+    red: "#FFF4F4",
+    yellow: "#FFFCEB",
+    orange: "#FFF8EE",
+    green: "#F1FDF5",
+    blue: "#F6F9FF",
+    purple: "#F9F8FF",
+    teal: "#F2FFFD"
+}
+
+const TRANSPARENT_COLORS = {
+    red: "#F5484A14",
+    yellow: "#FFD30014",
+    orange: "#F8930014",
+    green: "#1BAC4B14",
+    blue: "#246BFD14",
+    purple: "#6949FF14",
+    teal: "#019B8314",
+    cyan: "#00BCD414"
+}
+
 const COLORS = {
     primary: PRIMARY_COLORS,
     secondary: SECONDARY_COLORS,
     grayscale: GRAYSCALE_COLORS,
+    background: BACKGROUND_COLORS,
+    transparent: TRANSPARENT_COLORS,
     success: "#12D18E",
     info: "#246BFD",
     warning: "#FACC15",
     error: "#F75555",
     disabled: "#D8D8D8",
     disabledButton: "#C43A3B",
+    red: "#F54336",
+    pink: "#EA1E61",
+    purple: "#9D28AC",
+    deepPurple: "#673AB3",
+    indigo: "#3F51B2",
+    blue: "#1A96F0",
+    lightBlue: "#00A9F1",
+    cyan: "#00BCD3",
+    teal: "#009689",
+    green: "#4AAF57",
+    lightGreen: "#8BC255",
+    lime: "#CDDC4C",
+    yellow: "#FFEB4F",
+    amber: "#FFC02D",
+    orange: "#FF981F",
+    deepOrange: "#FF5726",
+    brown: "#7A5548",
+    blueGrey: "#607D8A",
+    dark1: "#181A20",
+    dark2: "#1F222A",
+    dark3: "#262A35",
+    dark4: "#35383F",
 };
 
 const config = {
