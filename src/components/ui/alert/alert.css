@@ -6,26 +6,22 @@
     padding: 8px 12px;
 
     &--color-success {
-        /*prozatimní pozadí*/
-        background-color: rgba(172, 255, 47, 0.212);
+        background-color: theme("colors.transparent.green");
         color: theme("colors.success");
     }
 
     &--color-info {
-        /*prozatimní pozadí*/
-        background-color: rgba(0, 0, 255, 0.068);
+        background-color: theme("colors.transparent.blue");
         color: theme("colors.info");
     }
 
     &--color-warning {
-        /*prozatimní pozadí*/
-        background-color: rgba(255, 255, 0, 0.089);
+        background-color: theme("colors.transparent.yellow");
         color: theme("colors.warning");
     }
 
     &--color-error {
-        /*prozatimní pozadí*/
-        background-color: rgba(255, 0, 0, 0.082);
+        background-color: theme("colors.transparent.red");
         color: theme("colors.error");
     }
 }
