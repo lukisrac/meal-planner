@@ -33,7 +33,7 @@ export default function UiKitPage() {
 
             {/* ALERTS */}
             <div className="space-y-4">
-                <p className="text-h2">Alert</p>
+                <p className="text-h2">Alerts</p>
                 <hr />
                 <div>
                     <p>Colors:</p>
