@@ -15,7 +15,7 @@ export function Button(props: Props) {
                 clsx(
                     "button",
                     `button--color-${props.color ?? "primary"}`,
-                    `button-variant-${props.variant ?? "filled"}`,
+                    `button--variant-${props.variant ?? "filled"}`,
                     isDisabled && "button--disabled",
                     className,
                 )
