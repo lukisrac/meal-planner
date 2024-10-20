@@ -24,6 +24,11 @@ export const env = createEnv({
             // VERCEL_URL doesn't include `https` so it cant be validated as a URL
             process.env.VERCEL ? z.string() : z.string().url(),
         ),
+        S3_ENDPOINT: z.string(),
+        S3_ACCESS_KEY: z.string(),
+        S3_SECRET_KEY: z.string(),
+        S3_BUCKET_NAME: z.string(),
+        S3_BUCKER_REGION: z.string(),
     },
 
     /**
@@ -46,6 +51,11 @@ export const env = createEnv({
         NODE_ENV: process.env.NODE_ENV,
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
         NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+        S3_ENDPOINT: process.env.S3_ENDPOINT,
+        S3_ACCESS_KEY: process.env.S3_ACCESS_KEY,
+        S3_SECRET_KEY: process.env.S3_SECRET_KEY,
+        S3_BUCKET_NAME: process.env.S3_BUCKET_NAME,
+        S3_BUCKER_REGION: process.env.S3_BUCKER_REGION,
     },
     /**
      * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

@@ -11,6 +11,8 @@ const config = {
         remotePatterns: [
             { protocol: "https", hostname: "picsum.photos" },
             { protocol: "https", hostname: "lh3.googleusercontent.com" },
+            { protocol: "https", hostname: "www.gravatar.com" },
+            { protocol: "https", hostname: "storage.lukis.dev" },
         ],
     },
 };
