@@ -8,7 +8,6 @@ export const env = createEnv({
      */
     server: {
         DATABASE_URL: z.string().url(),
-        DATABASE_DIRECT_URL: z.string().url().optional(),
         GOOGLE_CLIENT_ID: z.string(),
         GOOGLE_CLIENT_SECRET: z.string(),
         NODE_ENV: z
@@ -25,8 +24,6 @@ export const env = createEnv({
             // VERCEL_URL doesn't include `https` so it cant be validated as a URL
             process.env.VERCEL ? z.string() : z.string().url(),
         ),
-        POSTGRES_PRISMA_URL: z.string().url().optional(),
-        POSTGRES_URL_NON_POOLING: z.string().url().optional(),
     },
 
     /**
@@ -44,14 +41,11 @@ export const env = createEnv({
      */
     runtimeEnv: {
         DATABASE_URL: process.env.DATABASE_URL,
-        DATABASE_DIRECT_URL: process.env.DATABASE_DIRECT_URL,
         GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
         GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
         NODE_ENV: process.env.NODE_ENV,
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
         NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-        POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
-        POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
     },
     /**
      * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

@@ -76,6 +76,16 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+// Model souboru
+model File {
+  id           String   @id @default(uuid())
+  bucket       String
+  fileName     String   @unique
+  originalName String
+  createdAt    DateTime @default(now())
+  size         Int
+}
+
 // Model obrázku pro recept
 model Image {
   id       Int    @id @default(autoincrement())
