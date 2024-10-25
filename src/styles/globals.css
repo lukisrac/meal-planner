@@ -1,8 +1,7 @@
+@import "@/icons-font/iconly.css";
+@import "@/components/ui/alert/alert.css";
+@import "@/components/ui/button/button.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "@/icons-font/iconly.css";
-
-@import "@/components/ui/alert/alert.css";
-@import "@/components/ui/button/button.css";

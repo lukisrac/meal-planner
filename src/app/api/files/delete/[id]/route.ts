@@ -5,7 +5,7 @@ import { deleteFileFromBucket } from "@/utils/upload-client";
 
 export async function DELETE(
     req: NextRequest,
-    { params }: { params: { id: string } },
+    { params }: { params: Promise<{ id: string }> },
 ) {
     if (req.method !== "DELETE") {
         return new NextResponse("Only DELETE requests are allowed", {
@@ -13,7 +13,7 @@ export async function DELETE(
         });
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     if (!id) {
         return new NextResponse("Missing or invalid id", {
