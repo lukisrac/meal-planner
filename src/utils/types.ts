@@ -24,7 +24,6 @@ export type FilesListProps = {
         // eslint-disable-next-line no-unused-vars
         files: FileProps[] | ((files: FileProps[]) => FileProps[]),
     ) => void;
-    downloadUsingPresignedUrl: boolean;
 };
 
 export type LoadSpinnerProps = {

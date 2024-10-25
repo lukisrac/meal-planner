@@ -9,7 +9,6 @@ async function getPresignedUrl(file: FileProps) {
 }
 
 interface Props {
-    downloadUsingPresignedUrl: boolean;
     fetchFiles: () => Promise<void>;
     file: FileProps;
     setFiles: (
@@ -49,12 +48,8 @@ export function FileItem(props: Props) {
 
     // Depending on the upload mode, we either download the file using the presigned url from S3 or the Next.js API endpoint.
     const downloadFile = async (file: FileProps) => {
-        if (props.downloadUsingPresignedUrl) {
-            const presignedUrl = await getPresignedUrl(file);
-            window.open(presignedUrl, "_blank");
-        } else {
-            window.open(`/api/files/download/smallFiles/${file.id}`, "_blank");
-        }
+        const presignedUrl = await getPresignedUrl(file);
+        window.open(presignedUrl, "_blank");
     };
 
     return (
@@ -65,6 +60,14 @@ export function FileItem(props: Props) {
             >
                 {props.file.originalFileName}
             </button>
+            <a
+                download
+                href={props.file.fileUrl}
+                rel="noreferrer"
+                target="_blank"
+            >
+                {props.file.originalFileName}
+            </a>
 
             <Image alt="" height={100} src={props.file.fileUrl} width={100} />
 

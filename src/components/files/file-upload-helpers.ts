@@ -1,6 +1,5 @@
 import { PresignedUrlProp, ShortFileProp } from "@/utils/types";
 
-export const MAX_FILE_SIZE_NEXTJS_ROUTE = 4;
 export const MAX_FILE_SIZE_S3_ENDPOINT = 100;
 export const FILE_NUMBER_LIMIT = 10;
 
@@ -130,17 +129,4 @@ export function formatBytes(bytes: number, decimals = 2) {
 
     // return formatted string
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-}
-
-/**
- *
- * @param files array of files
- * @returns FormData object
- */
-export function createFormData(files: File[]): FormData {
-    const formData = new FormData();
-    files.forEach((file) => {
-        formData.append("file", file);
-    });
-    return formData;
 }

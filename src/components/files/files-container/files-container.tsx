@@ -19,9 +19,6 @@ export function FilesContainer(props: FilesListProps) {
             <ul className="h-80 overflow-auto">
                 {props.files.map((file) => (
                     <FileItem
-                        downloadUsingPresignedUrl={
-                            props.downloadUsingPresignedUrl
-                        }
                         fetchFiles={props.fetchFiles}
                         file={file}
                         key={file.id}
