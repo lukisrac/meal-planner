@@ -78,12 +78,16 @@ model VerificationToken {
 
 // Model souboru
 model File {
-  id           String   @id @default(uuid())
-  bucket       String
-  fileName     String   @unique
-  originalName String
-  createdAt    DateTime @default(now())
-  size         Int
+  id            String       @id @default(uuid())
+  bucket        String
+  fileName      String       @unique
+  originalName  String
+  createdAt     DateTime     @default(now())
+  size          Int
+  instruction   Instruction? @relation(fields: [instructionId], references: [id])
+  instructionId Int?
+  recipeId      Int
+  Recipe        Recipe       @relation(fields: [recipeId], references: [id])
 }
 
 // Model obrázku pro recept
@@ -91,7 +95,6 @@ model Image {
   id       Int    @id @default(autoincrement())
   url      String
   recipeId Int
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
 }
 
 // Model receptu
@@ -105,7 +108,7 @@ model Recipe {
   updatedAt         DateTime           @updatedAt
   userId            String
   user              User               @relation(fields: [userId], references: [id])
-  images            Image[]
+  images            File[]
   recipeIngredients RecipeIngredient[]
   instructions      Instruction[]
   comments          Comment[]
@@ -138,6 +141,7 @@ model Instruction {
   step     Int
   text     String
   recipe   Recipe @relation(fields: [recipeId], references: [id])
+  images   File[]
 }
 
 // Model komentáře

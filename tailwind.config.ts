@@ -48,10 +48,11 @@ const BACKGROUND_COLORS = {
     green: "#F1FDF5",
     blue: "#F6F9FF",
     purple: "#F9F8FF",
-    teal: "#F2FFFD"
-}
+    teal: "#F2FFFD",
+};
 
 const TRANSPARENT_COLORS = {
+    DEFAULT: "transparent",
     red: "#F5484A14",
     yellow: "#FFD30014",
     orange: "#F8930014",
@@ -59,8 +60,8 @@ const TRANSPARENT_COLORS = {
     blue: "#246BFD14",
     purple: "#6949FF14",
     teal: "#019B8314",
-    cyan: "#00BCD414"
-}
+    cyan: "#00BCD414",
+};
 
 const COLORS = {
     primary: PRIMARY_COLORS,

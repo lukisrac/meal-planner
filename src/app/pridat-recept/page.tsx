@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FilesContainer } from "@/components/files/files-container/files-container";
-import { UploadFilesS3PresignedUrl } from "@/components/files/upload-files-s3-presigned-url/upload-files-s3-presigned-url";
 import { CreateRecipeForm } from "@/components/forms/create-recipe-form";
 import { FileProps } from "@/utils/types";
 
@@ -26,12 +24,12 @@ export default function AddRecipePage() {
         <div>
             přidat recept
             <CreateRecipeForm />
-            <UploadFilesS3PresignedUrl onUploadSuccess={fetchFiles} />
+            {/* <UploadFilesS3PresignedUrl onUploadSuccess={fetchFiles} />
             <FilesContainer
                 fetchFiles={fetchFiles}
                 files={files}
                 setFiles={setFiles}
-            />
+            /> */}
         </div>
     );
 }
