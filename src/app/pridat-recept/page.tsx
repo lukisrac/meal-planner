@@ -5,7 +5,7 @@ import { CreateRecipeForm } from "@/components/forms/create-recipe-form";
 import { FileProps } from "@/utils/types";
 
 export default function AddRecipePage() {
-    const [files, setFiles] = useState<FileProps[]>([]);
+    const [, setFiles] = useState<FileProps[]>([]);
 
     // Fetch files from the database
     const fetchFiles = async () => {
@@ -17,6 +17,7 @@ export default function AddRecipePage() {
 
     // fetch files on the first render
     useEffect(() => {
+        // eslint-disable-next-line no-console
         fetchFiles().catch(console.error);
     }, []);
 

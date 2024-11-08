@@ -20,8 +20,6 @@ type RecipeFormData = z.infer<typeof FORM_SCHEMA>;
 
 export function CreateRecipeForm() {
     const handleSubmitForm: SubmitHandler<RecipeFormData> = async (values) => {
-        console.log("submitting form");
-        console.log(values);
         const formData = new FormData();
         formData.append("title", values.title);
         formData.append("description", values.description);
@@ -37,11 +35,13 @@ export function CreateRecipeForm() {
                 body: formData,
             });
         } catch (e) {
+            // eslint-disable-next-line no-console
             console.log(e);
         }
     };
 
     const handleFormErrors: SubmitErrorHandler<RecipeFormData> = (errors) => {
+        // eslint-disable-next-line no-console
         console.log("form errors", errors);
     };
 

@@ -17,6 +17,7 @@ const config = {
         "plugin:react/recommended",
     ],
     rules: {
+        "no-console": "error",
         "react/react-in-jsx-scope": "off",
         "react/jsx-sort-props": ["error"],
         "prefer-template": ["error"],

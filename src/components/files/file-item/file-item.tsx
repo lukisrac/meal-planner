@@ -34,6 +34,7 @@ export function FileItem(props: Props) {
             // fetch files after deleting
             await props.fetchFiles();
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.error(error);
             alert("Failed to delete file");
         } finally {

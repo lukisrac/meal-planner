@@ -14,6 +14,7 @@ export async function GET() {
 
         return NextResponse.json(recipes);
     } catch (e) {
+        // eslint-disable-next-line no-console
         console.log("[RECIPES_GET]", e);
         return new NextResponse("Internal error", { status: 500 });
     }
@@ -29,17 +30,24 @@ export async function POST(req: Request) {
 
         const formData = await req.formData();
 
-        const title = formData.get("title");
-        const description = formData.get("description");
-        const preparationTime = parseInt(formData.get("preparationTime"), 10);
-        const servings = parseInt(formData.get("servings"), 10);
-        const images = formData.getAll("images");
+        const title = formData.get("title") as string;
+        const description = formData.get("description") as string;
+        const preparationTime = parseInt(
+            formData.get("preparationTime") as string,
+            10,
+        );
+        const servings = parseInt(formData.get("servings") as string, 10);
+        const images = formData.getAll("images") as File[];
 
-        console.log("title", title);
-        console.log("description", description);
-        console.log("preparationTime", preparationTime);
-        console.log("servings", servings);
-        console.log("images", images);
+        if (
+            !title ||
+            !description ||
+            !preparationTime ||
+            !servings ||
+            !images
+        ) {
+            return new NextResponse("Missing required fields", { status: 400 });
+        }
 
         const imageUrls = [];
 
@@ -48,18 +56,13 @@ export async function POST(req: Request) {
             fileSize: image.size,
         }));
 
-        //console.log("filesInfo", filesInfo);
-
         const presignedUrls = await getPresignedUrls(filesInfo);
 
-        console.log("presignedUrls", presignedUrls);
-
         await handleUpload(images, presignedUrls, () => {
+            // eslint-disable-next-line no-console
             console.log("uploaded");
             imageUrls.push(presignedUrls);
         });
-
-        const uploadedImages = await db.image.findMany({ where: {} });
 
         const recipe = await db.recipe.create({
             data: {
@@ -81,6 +84,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json(recipe);
     } catch (e) {
+        // eslint-disable-next-line no-console
         console.log("[RECIPES_POST]", e);
         return new NextResponse("Internal error", { status: 500 });
     }

@@ -3,6 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "type": "module",
+    "engines": {
+        "node": "20"
+    },
     "scripts": {
         "build": "next build",
         "dev": "next dev --turbo",
@@ -55,5 +58,7 @@
     "ct3aMetadata": {
         "initVersion": "7.37.0"
     },
-    "packageManager": "npm@9.6.7"
+    "volta": {
+        "node": "20.18.0"
+    }
 }

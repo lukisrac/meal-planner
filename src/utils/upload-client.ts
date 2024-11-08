@@ -53,6 +53,7 @@ export async function deleteFileFromBucket({
     try {
         await s3Client.removeObject(bucketName, fileName);
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
         return false;
     }

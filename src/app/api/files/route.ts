@@ -33,6 +33,7 @@ export async function GET() {
 
         return NextResponse.json(filesWithProps);
     } catch (e) {
+        // eslint-disable-next-line no-console
         console.log("[FILES_GET]", e);
         return new NextResponse("Internal error", { status: 500 });
     }
