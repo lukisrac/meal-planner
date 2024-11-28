@@ -8,7 +8,7 @@ import { NumberInput } from "@/components/form/number-input/number-input";
 import { TextInput } from "@/components/form/text-input/text-input";
 import { ImageFileInput } from "@/components/ui/image-file-input/image-file-input";
 
-const FORM_SCHEMA = z.object({
+export const FORM_SCHEMA = z.object({
     description: z.string().min(1, "Popisek je povinný"),
     images: z.array(z.instanceof(File)),
     preparationTime: z.number().min(1),

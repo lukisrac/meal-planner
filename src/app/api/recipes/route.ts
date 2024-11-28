@@ -1,12 +1,23 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import sharp from "sharp";
+import { z } from "zod";
 import {
     getPresignedUrls,
     handleUpload,
 } from "@/components/files/file-upload-helpers";
+import { env } from "@/env";
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
 import { ShortFileProp } from "@/utils/types";
+
+export const RECIPE_FORM_SCHEMA = z.object({
+    description: z.string().min(1, "Popisek je povinný"),
+    images: z.array(z.instanceof(File)),
+    preparationTime: z.number().min(1),
+    servings: z.number().min(1),
+    title: z.string().min(1, "Název je povinný"),
+});
 
 export async function GET() {
     try {
@@ -30,53 +41,67 @@ export async function POST(req: Request) {
 
         const formData = await req.formData();
 
-        const title = formData.get("title") as string;
-        const description = formData.get("description") as string;
-        const preparationTime = parseInt(
-            formData.get("preparationTime") as string,
-            10,
-        );
-        const servings = parseInt(formData.get("servings") as string, 10);
-        const images = formData.getAll("images") as File[];
+        const parsedFormData = RECIPE_FORM_SCHEMA.parse({
+            title: formData.get("title"),
+            description: formData.get("description"),
+            preparationTime: parseInt(
+                formData.get("preparationTime") as string,
+                10,
+            ),
+            servings: parseInt(formData.get("servings") as string, 10),
+            images: formData.getAll("images"),
+        });
 
         if (
-            !title ||
-            !description ||
-            !preparationTime ||
-            !servings ||
-            !images
+            !parsedFormData.title ||
+            !parsedFormData.description ||
+            !parsedFormData.preparationTime ||
+            !parsedFormData.servings ||
+            !parsedFormData.images
         ) {
             return new NextResponse("Missing required fields", { status: 400 });
         }
 
-        const imageUrls = [];
+        const processedImages = await Promise.all(
+            parsedFormData.images.map(async (image) => {
+                const buffer = await image.arrayBuffer();
 
-        const filesInfo: ShortFileProp[] = images.map((image) => ({
+                const processedBuffer = await sharp(Buffer.from(buffer))
+                    .resize(1920)
+                    .webp({ quality: 80 })
+                    .toBuffer();
+
+                return new File([processedBuffer], image.name, {
+                    type: "image/webp",
+                });
+            }),
+        );
+
+        const filesInfo: ShortFileProp[] = processedImages.map((image) => ({
             originalFileName: image.name,
             fileSize: image.size,
         }));
 
         const presignedUrls = await getPresignedUrls(filesInfo);
 
-        await handleUpload(images, presignedUrls, () => {
+        await handleUpload(processedImages, presignedUrls, () => {
             // eslint-disable-next-line no-console
             console.log("uploaded");
-            imageUrls.push(presignedUrls);
         });
 
         const recipe = await db.recipe.create({
             data: {
-                title,
-                description,
-                preparationTime,
-                servings,
+                title: parsedFormData.title,
+                description: parsedFormData.description,
+                preparationTime: parsedFormData.preparationTime,
+                servings: parsedFormData.servings,
                 user: { connect: { email: session.user.email } },
                 images: {
                     create: presignedUrls.map((url) => ({
                         size: url.fileSize,
-                        fileName: url.originalFileName,
+                        fileName: url.fileNameInBucket,
                         originalName: url.originalFileName,
-                        bucket: "meal-planner",
+                        bucket: env.S3_BUCKET_NAME,
                     })),
                 },
             },
