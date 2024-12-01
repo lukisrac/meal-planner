@@ -1,23 +1,15 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import sharp from "sharp";
-import { z } from "zod";
 import {
     getPresignedUrls,
     handleUpload,
 } from "@/components/files/file-upload-helpers";
+import { FORM_SCHEMA } from "@/components/forms/create-recipe-form";
 import { env } from "@/env";
 import { authOptions } from "@/server/auth";
 import { db } from "@/server/db";
 import { ShortFileProp } from "@/utils/types";
-
-export const RECIPE_FORM_SCHEMA = z.object({
-    description: z.string().min(1, "Popisek je povinný"),
-    images: z.array(z.instanceof(File)),
-    preparationTime: z.number().min(1),
-    servings: z.number().min(1),
-    title: z.string().min(1, "Název je povinný"),
-});
 
 export async function GET() {
     try {
@@ -41,7 +33,7 @@ export async function POST(req: Request) {
 
         const formData = await req.formData();
 
-        const parsedFormData = RECIPE_FORM_SCHEMA.parse({
+        const parsedFormData = FORM_SCHEMA.parse({
             title: formData.get("title"),
             description: formData.get("description"),
             preparationTime: parseInt(

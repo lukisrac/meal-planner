@@ -56,7 +56,7 @@ export function ImageFileInput<FormData extends FieldValues>(
                     onSelect={handleSelectFiles}
                     ref={field.ref}
                 >
-                    <Button className="bg-transparent flex size-full flex-col items-center justify-center text-grayscale-500">
+                    <Button className="flex size-full flex-col items-center justify-center bg-transparent text-grayscale-500">
                         <i className="icon-image-2 text-[50px]" />
                         <span className="text-bodyLg font-normal">
                             Přidat obrázek k receptu
