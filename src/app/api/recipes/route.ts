@@ -7,7 +7,7 @@ import {
 } from "@/components/files/file-upload-helpers";
 import { FORM_SCHEMA } from "@/components/forms/create-recipe-form";
 import { env } from "@/env";
-import { authOptions } from "@/server/auth";
+import { authOptions } from "@/server/auth-old";
 import { db } from "@/server/db";
 import { ShortFileProp } from "@/utils/types";
 

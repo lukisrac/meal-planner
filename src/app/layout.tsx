@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import { ReactNode, Suspense } from "react";
-import { Providers } from "@/providers/providers";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -20,11 +19,11 @@ export default function RootLayout(props: { children: ReactNode }) {
     return (
         <html className={urbanist.className} lang="cs">
             <body className="h-screen w-screen">
-                <Providers>
-                    <main className="h-full">
-                        <Suspense>{props.children}</Suspense>
-                    </main>
-                </Providers>
+                {/* <Providers> */}
+                <main className="h-full">
+                    <Suspense>{props.children}</Suspense>
+                </main>
+                {/* </Providers> */}
             </body>
         </html>
     );
